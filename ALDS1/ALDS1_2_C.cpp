@@ -2,7 +2,7 @@
 
 using namespace std;
 
-bool bubbleSort (char C[], int A[], int N) {
+bool bubbleSort (char C[], int A[], int N, char c[], int a[]) {
 
     // int cnt = 0;
     bool stable = true;
@@ -16,9 +16,6 @@ bool bubbleSort (char C[], int A[], int N) {
                 swap (C[i], C[i - 1]);
                 swap (A[i], A[i - 1]);
                 flag = true;
-                if (C[i] == C[i - 1]) {
-                    stable = false;
-                }
                 // disp (A, N);
             }
         }
@@ -29,7 +26,7 @@ bool bubbleSort (char C[], int A[], int N) {
 
 }
 
-bool selectionSort (char C[], int A[], int N) {
+bool selectionSort (char C[], int A[], int N, char c[], int a[]) {
     
     // int cnt = 0;    // 入れ替え回数のカウント変数
     bool stable = true;
@@ -46,10 +43,6 @@ bool selectionSort (char C[], int A[], int N) {
         if (i != minj) {
             swap (C[i], C[minj]);
             swap (A[i], A[minj]);
-            // cnt++;
-            if (C[i] == C[minj]) {
-                stable = false;
-            }
         }
     } 
 
@@ -79,23 +72,21 @@ void disp (char C[], int A[], int N, bool stable) {
 int main () {
 
     int N;
-    char Cb[72], Cs[72];
+    char C[36], Cb[36], Cs[36];
+    int A[36], Ab[36], As[36];
 
     cin >> N;
+
     for (int i = 0; i < N; i++) {
-        cin >> Cb[i] >> Cb[i + N];
-        Cs[i] = Cb[i];
-        Cs[i + N] = Cb[i + N];
+        cin >> C[i] >> A[i];
+        Cb[i] = C[i];
+        Cs[i] = C[i];
+        Ab[i] = A[i];
+        As[i] = A[i];
     }
 
-    int Ab[36], As[36];
-    for (int i = 0; i < N; i++) {
-        Ab[i] = Cb[i + N] - '0';
-        As[i] = Cb[i + N] - '0';
-    }
-
-    bool stableB = bubbleSort(Cb, Ab, N);
-    bool stableS = selectionSort(Cs, As, N);
+    bool stableB = bubbleSort(Cb, Ab, N, C, A);
+    bool stableS = selectionSort(Cs, As, N, C, A);
 
     disp (Cb, Ab, N, stableB);
     disp (Cs, As, N, stableS);
