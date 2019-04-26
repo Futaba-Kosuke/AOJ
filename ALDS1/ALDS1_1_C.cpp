@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cmath>
 
 using namespace std;
 
@@ -8,10 +9,10 @@ bool PrimeN (int x) {
         return false;
     }
 
-    for (int i = 2; i < x - 1; i++) {
+    for (int i = 2; i <= sqrt(x); i++) {
         
         if (x == i) {
-            cout << x << endl;
+            // cout << x << endl;
             return true;
         }
 
@@ -20,6 +21,7 @@ bool PrimeN (int x) {
         }
     }
 
+    // cout << x << endl;
     return true;
 
 }
