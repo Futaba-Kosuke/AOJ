@@ -2,10 +2,30 @@
 
 using namespace std;
 
+bool isStable (char C[], int A[], int N, char c[], int a[]) {
+
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            for (int x = 0; x < N - 1; x++) {
+                for (int y = x + 1; y < N; y++) {
+                    if (A[i] == A[j] && A[i] == a[x] && A[i] == a[y] && c[x] == C[j] && c[y] == C[i]) {
+                        // cout << "i, j, x, y: " << i << j << x << y << endl;
+                        // cout << A[i] << " == " << A[j] << " && " << c[x] << " == " << C[j] << " && " << c[y] <<  " == "  << C[i] << endl;
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+    return true;
+
+}
+
 bool bubbleSort (char C[], int A[], int N, char c[], int a[]) {
 
     // int cnt = 0;
-    bool stable = true;
+    // bool stable = true;
 
     bool flag = true;
 
@@ -22,14 +42,14 @@ bool bubbleSort (char C[], int A[], int N, char c[], int a[]) {
         // cout << endl;
     }
 
-    return stable;
+    return isStable(C, A, N, c, a);
 
 }
 
 bool selectionSort (char C[], int A[], int N, char c[], int a[]) {
     
     // int cnt = 0;    // 入れ替え回数のカウント変数
-    bool stable = true;
+    // bool stable = true;
 
     for (int i = 0; i < N - 1; i++) {
         int minj = i;
@@ -46,7 +66,7 @@ bool selectionSort (char C[], int A[], int N, char c[], int a[]) {
         }
     } 
 
-    return stable;
+    return isStable(C, A, N, c, a);
 
 }
 
